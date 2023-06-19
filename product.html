@@ -13,6 +13,24 @@
             justify-content: center;
             align-items: center;
         }
+
+        .center-name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .table {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -37,21 +55,55 @@
         </li>
     </ul>
     <hr>
-    <h1>제품상세</h1>
+    <div class="center-name">
+        <h3>제품상세</h3>
+    </div>
     <hr>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
+                <div class="main-img">
                 <img src="https://image.istarbucks.co.kr/upload/store/skuimg/2023/04/[11139099]_20230428141331507.jpg"
                     alt="상품 이미지" class="img-fluid">
+                </div>
+                    <div class="table">
+                    <table>
+                        <tr>
+                            <th>카테고리</th>
+                            <td>케냐</td>
+                        </tr>
+                        <tr>
+                            <th>로스팅</th>
+                            <td>미디엄 로스트</td>
+                        </tr>
+                        <tr>
+                            <th>아로마</th>
+                            <td>Candy</td>
+                        </tr>
+                        <tr>
+                            <th>상품명</th>
+                            <td>케냐 키린야가</td>
+                        </tr>
+                        <tr>
+                            <th>상품명(영문)</th>
+                            <td>Kenya Kirinyaga</td>
+                        </tr>
+                        <tr>
+                            <th>가격</th>
+                            <td>₩15,000</td>
+                        </tr>
+                        <tr>
+                            <th>배송방법</th>
+                            <td>택배</td>
+                        </tr>
+                        <tr>
+                            <th>제조일</th>
+                            <td>2023-06-19</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <div class="col-md-8">
-                <h2>카테고리: 케냐</h2>
-                <h2>로스팅: 미디엄 로스트</h2>
-                <h2>아로마: <Cc:ie></Cc:ie>Candy</h2>
-                <h2>상품명: 케냐 키린야가</h2>
-                <h2>상품명: Kenya Kirinyaga</h2>
-                <h3>가격: ₩15,000</h3>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>용량 옵션을 선택하십시오.</option>
                     <option value="1">용량 선택 : 250g</option>
@@ -64,8 +116,6 @@
                     <option value="2">분쇄 선택 : 모카포트용</option>
                     <option value="3">분쇄 선택 : 드립커피용</option>
                 </select>
-                <h3>배송방법: 택배</h3>
-                <h3>제조일: 2023-06-19</h3>
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <a href="https://eom48.github.io/project_02/" class="btn btn-primary">Order</a>
                 </div>
