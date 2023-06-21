@@ -117,7 +117,7 @@
                     <option value="drip">분쇄 선택 : 드립커피용</option>
                 </select>
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <a id="orderButton" href="#" class="btn btn-primary">Order</a>
+                    <a id="orderButton" href="https://eom48.github.io/project/done.html" class="btn btn-primary">Order</a>
                 </div>
                 <hr>
                 <p>케냐 키린야가는 케냐 지역에서도 뛰어난 품질의 커피를 선보이는 곳으로 유명합니다.<br>
@@ -205,6 +205,47 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+        <script>const orderButton = document.querySelector('.btn-primary');
+
+            orderButton.addEventListener('click', () => {
+              const selectedWeight = document.querySelector('#weight-select').value;
+              const selectedGrind = document.querySelector('#grind-select').value;
+              const orderData = {
+                id: 1,
+                korean_name: '케냐 키린야가',
+                english_name: 'Kenya Kirinyaga',
+                image_url: 'https://image.istarbucks.co.kr/upload/store/skuimg/2023/04/[11139099]_20230428141331507.jpg',
+                category: '케냐',
+                roasting: '미디엄 로스트',
+                aroma: 'Candy',
+                description: '엄청 맛있습니다.',
+                price: 15000,
+                weight: selectedWeight,
+                grind: selectedGrind,
+                delivery: '택배',
+                roasting_date: '2023-06-19'
+              };
+            
+              // Send the order data to the server
+              fetch('https://5683-14-39-99-50.ngrok-free.app/shop/order/save/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+              })
+                .then(response => response.json())
+                .then(data => {
+                  // Handle the response from the server
+                  console.log('Order placed:', data);
+                  // Perform any additional actions or UI updates as needed
+                })
+                .catch(error => {
+                  console.error('Error placing order:', error);
+                  // Handle any errors that occurred during the request
+                });
+            });
+            </script>
 </body>
 
 </html>
