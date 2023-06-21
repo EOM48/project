@@ -104,20 +104,20 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <select class="form-select" aria-label="Default select example">
+                <select id="capacitySelect" class="form-select" aria-label="Default select example">
                     <option selected>용량 옵션을 선택하십시오.</option>
-                    <option value="1">용량 선택 : 250g</option>
-                    <option value="2">용량 선택 : 500g</option>
-                    <option value="3">용량 선택 : 1Kg</option>
+                    <option value="250">용량 선택 : 250g</option>
+                    <option value="500">용량 선택 : 500g</option>
+                    <option value="1000">용량 선택 : 1Kg</option>
                 </select>
-                <select class="form-select" aria-label="Default select example">
+                <select id="grindSelect" class="form-select" aria-label="Default select example">
                     <option selected>분쇄 옵션을 선택하십시오.</option>
-                    <option value="1">분쇄 선택 : 안 함</option>
-                    <option value="2">분쇄 선택 : 모카포트용</option>
-                    <option value="3">분쇄 선택 : 드립커피용</option>
+                    <option value="none">분쇄 선택 : 안 함</option>
+                    <option value="moka">분쇄 선택 : 모카포트용</option>
+                    <option value="drip">분쇄 선택 : 드립커피용</option>
                 </select>
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <a href="https://eom48.github.io/project_02/" class="btn btn-primary">Order</a>
+                    <a id="orderButton" href="#" class="btn btn-primary">Order</a>
                 </div>
                 <hr>
                 <p>케냐 키린야가는 케냐 지역에서도 뛰어난 품질의 커피를 선보이는 곳으로 유명합니다.<br>
@@ -140,6 +140,68 @@
             <p class="text-center text-body-secondary">© 2023 GOGO COFFEE Company, Inc</p>
         </footer>
     </div>
+    <script>
+        const orderButton = document.getElementById('orderButton');
+        orderButton.addEventListener('click', () => {
+            const capacitySelect = document.getElementById('capacitySelect');
+            const grindSelect = document.getElementById('grindSelect');
+            const selectedCapacity = capacitySelect.value;
+            const selectedGrind = grindSelect.value;
+
+            const productData = {
+                id: 1,
+                korean_name: '케냐 키린야가',
+                english_name: 'Kenya Kirinyaga',
+                image_url: 'https://image.istarbucks.co.kr/upload/store/skuimg/2023/04/[11139099]_20230428141331507.jpg',
+                category: '케냐',
+                roasting: '미디엄 로스트',
+                aroma: 'Candy',
+                description: '엄청 맛있습니다.',
+                price: 15000,
+                weight: [250, 500],
+                grind: ['분쇄', '홀빈'],
+                delivery: '택배',
+                roasting_date: '2023-06-19'
+            };
+
+            const orderData = {
+                product_id: productData.id,
+                korean_name: productData.korean_name,
+                english_name: productData.english_name,
+                image_url: productData.image_url,
+                category: productData.category,
+                roasting: productData.roasting,
+                aroma: productData.aroma,
+                description: productData.description,
+                price: productData.price,
+                weight: selectedCapacity,
+                grind: selectedGrind,
+                delivery: productData.delivery,
+                roasting_date: productData.roasting_date
+            };
+
+            const formData = new FormData();
+            for (const key in orderData) {
+                formData.append(key, orderData[key]);
+            }
+
+            fetch('https://eom48tank.postman.co/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('주문이 성공적으로 완료되었습니다.');
+                } else {
+                    alert('주문을 처리하는 중에 문제가 발생했습니다. 다시 시도해주세요.');
+                }
+            })
+            .catch(error => {
+                alert('주문을 처리하는 중에 문제가 발생했습니다. 다시 시도해주세요.');
+                console.error(error);
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
